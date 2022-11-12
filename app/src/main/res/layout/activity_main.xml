@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_service"
+        android:text="@string/service"
+        app:layout_constraintBottom_toTopOf="@id/btn_foreground_service"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/btn"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/btn_foreground_service"
+        android:text="@string/foreground_service"
+        app:layout_constraintBottom_toTopOf="@id/btn_intent_service"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_service"
+        style="@style/btn"/>
+
+    <Button
+        android:id="@+id/btn_intent_service"
+        android:text="@string/intent_service"
+        app:layout_constraintBottom_toTopOf="@id/btn_job_dispatcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_foreground_service"
+        style="@style/btn" />
+
+    <Button
+        android:id="@+id/btn_job_dispatcher"
+        android:text="@string/job_dispatcher"
+        app:layout_constraintBottom_toTopOf="@id/btn_job_intent_service"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_intent_service"
+        style="@style/btn"/>
+
+    <Button
+        android:id="@+id/btn_job_intent_service"
+        android:text="@string/job_intent_service"
+        app:layout_constraintBottom_toTopOf="@id/btn_alarm_manager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_job_dispatcher"
+        style="@style/btn" />
+
+    <Button
+        android:id="@+id/btn_alarm_manager"
+        android:text="@string/alarm_manager"
+        app:layout_constraintBottom_toTopOf="@id/btn_work_manager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_job_intent_service"
+        style="@style/btn"/>
+
+    <Button
+        android:id="@+id/btn_work_manager"
+        android:text="@string/work_manager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_alarm_manager"
+        style="@style/btn"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
