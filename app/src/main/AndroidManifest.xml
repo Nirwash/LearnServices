@@ -27,6 +27,7 @@
         <service android:name=".services.SimpleService"/>
         <service android:name=".services.ForegroundService"/>
         <service android:name=".services.IntentService"/>
+        <service android:name=".services.IntentServiceTwo"/>
         <service android:name=".services.MyJobService"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>

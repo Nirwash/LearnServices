@@ -23,7 +23,7 @@ class MyJobService : JobService() {
                     val page = workItem.intent?.getIntExtra(PAGE, 0)
 
                     for (i in 0 until 10) {
-                        delay(500)
+                        delay(100)
                         log("Timer$i - page$page")
                     }
                     params?.completeWork(workItem)

@@ -9,11 +9,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.nirwashh.android.learnservices.databinding.ActivityMainBinding
-import com.nirwashh.android.learnservices.services.ForegroundService
-import com.nirwashh.android.learnservices.services.IntentService
-import com.nirwashh.android.learnservices.services.MyJobService
+import com.nirwashh.android.learnservices.services.*
 import com.nirwashh.android.learnservices.services.MyJobService.Companion.JOB_ID
-import com.nirwashh.android.learnservices.services.SimpleService
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -47,6 +44,8 @@ class MainActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val intent = MyJobService.newIntent(page++)
                 jobScheduler.enqueue(jobInfo, JobWorkItem(intent))
+            } else {
+                startService(IntentServiceTwo.newInstance(this, page++))
             }
         }
     }
