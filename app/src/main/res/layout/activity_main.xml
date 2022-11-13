@@ -28,15 +28,15 @@
     <Button
         android:id="@+id/btn_intent_service"
         android:text="@string/intent_service"
-        app:layout_constraintBottom_toTopOf="@id/btn_job_dispatcher"
+        app:layout_constraintBottom_toTopOf="@id/btn_job_scheduler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_foreground_service"
         style="@style/btn" />
 
     <Button
-        android:id="@+id/btn_job_dispatcher"
-        android:text="@string/job_dispatcher"
+        android:id="@+id/btn_job_scheduler"
+        android:text="@string/job_scheduler"
         app:layout_constraintBottom_toTopOf="@id/btn_job_intent_service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_alarm_manager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_job_dispatcher"
+        app:layout_constraintTop_toBottomOf="@id/btn_job_scheduler"
         style="@style/btn" />
 
     <Button
