@@ -2,21 +2,21 @@ package com.nirwashh.android.learnservices
 
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
+import android.app.job.JobWorkItem
 import android.content.ComponentName
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.nirwashh.android.learnservices.databinding.ActivityMainBinding
-import com.nirwashh.android.learnservices.services.ForegroundService
-import com.nirwashh.android.learnservices.services.IntentService
-import com.nirwashh.android.learnservices.services.MyJobService
+import com.nirwashh.android.learnservices.services.*
 import com.nirwashh.android.learnservices.services.MyJobService.Companion.JOB_ID
-import com.nirwashh.android.learnservices.services.SimpleService
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private var page = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,18 @@ class MainActivity : AppCompatActivity() {
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
                 .build()
             val jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
-            jobScheduler.schedule(jobInfo)
+            //jobScheduler.schedule(jobInfo)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val intent = MyJobService.newIntent(page++)
+                jobScheduler.enqueue(jobInfo, JobWorkItem(intent))
+            } else {
+                startService(IntentServiceTwo.newInstance(this, page++))
+            }
+        }
+
+        binding.btnJobIntentService.setOnClickListener {
+            MyJobIntentService.enqueue(this, page++)
         }
     }
 }
