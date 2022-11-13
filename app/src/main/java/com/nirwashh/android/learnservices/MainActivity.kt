@@ -1,10 +1,16 @@
 package com.nirwashh.android.learnservices
 
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
+import android.content.ComponentName
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.nirwashh.android.learnservices.databinding.ActivityMainBinding
 import com.nirwashh.android.learnservices.services.ForegroundService
+import com.nirwashh.android.learnservices.services.IntentService
+import com.nirwashh.android.learnservices.services.MyJobService
+import com.nirwashh.android.learnservices.services.MyJobService.Companion.JOB_ID
 import com.nirwashh.android.learnservices.services.SimpleService
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +27,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnForegroundService.setOnClickListener {
             ContextCompat.startForegroundService(this, ForegroundService.newInstance(this))
+        }
+
+        binding.btnIntentService.setOnClickListener {
+            ContextCompat.startForegroundService(this, IntentService.newInstance(this))
+        }
+
+        binding.btnJobScheduler.setOnClickListener {
+            val componentName = ComponentName(this, MyJobService::class.java)
+            val jobInfo = JobInfo.Builder(JOB_ID, componentName)
+                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
+                .build()
+            val jobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler
+            jobScheduler.schedule(jobInfo)
         }
     }
 }
