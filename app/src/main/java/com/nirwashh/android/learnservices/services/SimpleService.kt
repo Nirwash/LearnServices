@@ -7,7 +7,7 @@ import android.os.IBinder
 import android.util.Log
 import kotlinx.coroutines.*
 
-class SimpleService(): Service() {
+class SimpleService() : Service() {
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     override fun onBind(intent: Intent?): IBinder? {
         TODO("Not yet implemented")
@@ -26,7 +26,7 @@ class SimpleService(): Service() {
                 log("Service: Timer $i")
             }
         }
-        return super.onStartCommand(intent, flags, startId)
+        return START_STICKY
     }
 
     override fun onDestroy() {
@@ -36,10 +36,11 @@ class SimpleService(): Service() {
     }
 
     private fun log(message: String) {
-        Log.d("SIMPLE SERVICE", message)
+        Log.d(TAG, message)
     }
 
     companion object {
+        private const val TAG = "SIMPLE SERVICE"
         fun newIntent(context: Context): Intent {
             return Intent(context, SimpleService::class.java)
         }
