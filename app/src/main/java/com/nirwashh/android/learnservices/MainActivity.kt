@@ -8,9 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import com.nirwashh.android.learnservices.databinding.ActivityMainBinding
 import com.nirwashh.android.learnservices.services.*
 import com.nirwashh.android.learnservices.services.MyJobService.Companion.JOB_ID
+import com.nirwashh.android.learnservices.services.MyWorker.Companion.WORK_NAME
+import com.nirwashh.android.learnservices.services.MyWorker.Companion.makeRequest
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -51,6 +55,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnJobIntentService.setOnClickListener {
             MyJobIntentService.enqueue(this, page++)
+        }
+
+        binding.btnWorkManager.setOnClickListener {
+            val workManager = WorkManager.getInstance(applicationContext)
+            workManager.enqueueUniqueWork(
+                WORK_NAME,
+                ExistingWorkPolicy.APPEND,
+                makeRequest(page++)
+            )
         }
     }
 }
